@@ -1,17 +1,22 @@
 import { useState } from 'react';
-import {SafeAreaView, StyleSheet, TextInput} from 'react-native';
+import {SafeAreaView, StyleSheet, TextInput, Text} from 'react-native';
+import axios from 'axios';
 import Button from '../components/Button';
 
 const Login = ({navigation}) => {
   const [user, setUser] = useState('');
   const [contra, setContra] = useState('');
+  const [msj, setMsj] = useState('');
 
   const handleChangeUsuario = text => setUser(text);
   const handleChangeContra = text => setContra(text);
 
   const handleLogin = () =>
   {
-
+    axios.post('/login', {
+      Usuario: user,
+      Contraseña: contra
+    }).then(res => setMsj(res.data.message)).catch(error => console.log(error));
   }
 
   return (
@@ -28,10 +33,12 @@ const Login = ({navigation}) => {
         onChangeText={handleChangeContra}
         value={contra}
         placeholder="Contraseña"
+        secureTextEntry={true}
         required
       />
       <Button onPress={handleLogin} text="Iniciar Sesion"></Button>
       <Button onPress={() => navigation.navigate('Register')} text="No tengo cuenta"></Button>
+      <Text>{msj}</Text>
     </SafeAreaView>
   );
 };

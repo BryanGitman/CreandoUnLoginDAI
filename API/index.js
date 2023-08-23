@@ -13,13 +13,13 @@ app.post('/login', async (req, res) =>
     const usuario = await UserService.getUser(req.body.Usuario);
     if(!usuario)
     {
-        res.status(200).json({error: 'El usuario no existe'});
+        res.status(200).json({message: 'El usuario no existe'});
     }
     else
     {
         if(req.body.Contraseña != usuario.Contraseña)
         {
-            res.status(200).json({error: 'Contraseña incorrecta'});
+            res.status(200).json({message: 'Contraseña incorrecta'});
         }
         else
         {
@@ -35,7 +35,7 @@ app.post('/register', async (req, res) =>
         res.status(200).json({message: 'Usuario creado'});
     } catch(error){
         console.log(error);
-        res.status(500).json({error: 'Falló el insert'});
+        res.status(500).json({message: 'Falló el insert'});
     }
 });
 
