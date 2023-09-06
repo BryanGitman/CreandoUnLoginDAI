@@ -16,7 +16,13 @@ const Login = ({navigation}) => {
     axios.post('/login', {
       Usuario: user,
       Contraseña: contra
-    }).then(res => setMsj(res.data.message)).catch(error => console.log(error));
+    }).then(res => {
+        setMsj(res.data.message);
+        if(msj == "Sesion iniciada correctamente")
+        {
+          navigation.navigate('Home');
+        }
+      }).catch(error => console.log(error));
   }
 
   return (
@@ -38,7 +44,7 @@ const Login = ({navigation}) => {
       />
       <Button onPress={handleLogin} text="Iniciar Sesion"></Button>
       <Button onPress={() => navigation.navigate('Register')} text="No tengo cuenta"></Button>
-      <Text>{msj}</Text>
+      <Text style={{color:'red'}}>{msj}</Text>
     </SafeAreaView>
   );
 };

@@ -13,10 +13,19 @@ const Register = ({navigation}) => {
 
   const handleRegister = () =>
   {
-    axios.post('/register', {
-      Usuario: user,
-      Contraseña: contra
-    }).then(res => setMsj(res.data.message)).catch(error => console.log(error));
+    if(user && contra)
+    {
+      axios.post('/register', {
+        Usuario: user,
+        Contraseña: contra
+      }).then(res => {
+          setMsj(res.data.message);
+          if(msj == "Usuario creado")
+          {
+            navigation.navigate('Home');
+          }
+        }).catch(error => console.log(error));
+    }
   }
 
   return (
@@ -38,7 +47,7 @@ const Register = ({navigation}) => {
       />
       <Button onPress={handleRegister} text="Registrarse"></Button>
       <Button onPress={() => navigation.navigate('Login')} text="Ya tengo cuenta"></Button>
-      <Text>{msj}</Text>
+      <Text style={{color:'red'}}>{msj}</Text>
     </SafeAreaView>
   );
 };
