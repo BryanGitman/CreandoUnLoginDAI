@@ -17,10 +17,14 @@ const Login = ({navigation}) => {
       Usuario: user,
       Contraseña: contra
     }).then(res => {
-        setMsj(res.data.message);
-        if(msj == "Sesion iniciada correctamente")
+        setMsj("");
+        if(res.data.message == "Sesion iniciada correctamente")
         {
-          navigation.navigate('Home');
+          navigation.navigate('Home', { nomUsuario: user });
+        }
+        else
+        {
+          setMsj(res.data.message);
         }
       }).catch(error => console.log(error));
   }

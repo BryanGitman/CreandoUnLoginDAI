@@ -6,25 +6,39 @@ import Button from '../components/Button';
 const Register = ({navigation}) => {
   const [user, setUser] = useState('');
   const [contra, setContra] = useState('');
+  const [nombre, setNombre] = useState('');
+  const [apellido, setApellido] = useState('');
   const [msj, setMsj] = useState('');
 
   const handleChangeUsuario = text => setUser(text);
   const handleChangeContra = text => setContra(text);
+  const handleChangeNombre = text => setNombre(text);
+  const handleChangeApellido = text => setApellido(text);
 
   const handleRegister = () =>
   {
-    if(user && contra)
+    if(user && contra && nombre && apellido)
     {
       axios.post('/register', {
         Usuario: user,
-        Contraseña: contra
+        Contraseña: contra,
+        Nombre: nombre,
+        Apellido: apellido
       }).then(res => {
-          setMsj(res.data.message);
-          if(msj == "Usuario creado")
+          setMsj("");
+          if(res.data.message == "Usuario creado")
           {
-            navigation.navigate('Home');
+            navigation.navigate('Home', { nomUsuario: user });
+          }
+          else
+          {
+            setMsj(res.data.message);
           }
         }).catch(error => console.log(error));
+    }
+    else
+    {
+      setMsj("Completá todos los datos");
     }
   }
 
@@ -43,6 +57,20 @@ const Register = ({navigation}) => {
         value={contra}
         placeholder="Contraseña"
         secureTextEntry={true}
+        required
+      />
+      <TextInput
+        style={styles.input}
+        onChangeText={handleChangeNombre}
+        placeholder="Nombre"
+        value={nombre}
+        required
+      />
+      <TextInput
+        style={styles.input}
+        onChangeText={handleChangeApellido}
+        placeholder="Apellido"
+        value={apellido}
         required
       />
       <Button onPress={handleRegister} text="Registrarse"></Button>

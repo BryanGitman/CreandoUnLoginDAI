@@ -18,12 +18,14 @@ export class UserService
 
     static insertUser = async (user) =>
     {
-        const {Usuario, Contraseña} = user;
+        const {Usuario, Contraseña, Nombre, Apellido} = user;
         let pool = await sql.connect(config);
         const request = new sql.Request(pool);
         request
             .input('pUser',sql.NVarChar,Usuario)
             .input('pContra',sql.NVarChar,Contraseña)
-            .query('INSERT INTO Usuario (NombreUsuario, Contraseña) VALUES (@pUser, @pContra)');
+            .input('pNombre',sql.NVarChar,Nombre)
+            .input('pApellido',sql.NVarChar,Apellido)
+            .query('INSERT INTO Usuario (NombreUsuario, Contraseña, Nombre, Apellido) VALUES (@pUser, @pContra, @pNombre, @pApellido)');
     }
 }
