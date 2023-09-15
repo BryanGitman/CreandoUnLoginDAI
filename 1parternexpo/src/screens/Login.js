@@ -1,9 +1,12 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import {SafeAreaView, StyleSheet, TextInput, Text} from 'react-native';
 import axios from 'axios';
 import Button from '../components/Button';
+import UserContext from '../context/userContext';
 
 const Login = ({navigation}) => {
+  const usuario = useContext(UserContext);
+
   const [user, setUser] = useState('');
   const [contra, setContra] = useState('');
   const [msj, setMsj] = useState('');
@@ -20,6 +23,7 @@ const Login = ({navigation}) => {
         setMsj("");
         if(res.data.message == "Sesion iniciada correctamente")
         {
+          usuario.getUsuario(user);
           navigation.navigate('Home', { nomUsuario: user });
         }
         else
@@ -46,7 +50,7 @@ const Login = ({navigation}) => {
         secureTextEntry={true}
         required
       />
-      <Button onPress={handleLogin} text="Iniciar Sesion"></Button>
+      <Button onPress={handleLogin} text="Iniciar Sesion" color="lightblue"></Button>
       <Button onPress={() => navigation.navigate('Register')} text="No tengo cuenta"></Button>
       <Text style={{color:'red'}}>{msj}</Text>
     </SafeAreaView>

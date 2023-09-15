@@ -1,9 +1,12 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import {SafeAreaView, StyleSheet, TextInput, Text} from 'react-native';
 import axios from 'axios';
 import Button from '../components/Button';
+import UserContext from '../context/userContext';
 
 const Register = ({navigation}) => {
+  const usuario = useContext(UserContext);
+
   const [user, setUser] = useState('');
   const [contra, setContra] = useState('');
   const [nombre, setNombre] = useState('');
@@ -28,7 +31,8 @@ const Register = ({navigation}) => {
           setMsj("");
           if(res.data.message == "Usuario creado")
           {
-            navigation.navigate('Home', { nomUsuario: user });
+            usuario.getUsuario(user);
+            navigation.navigate('Home');
           }
           else
           {
@@ -73,7 +77,7 @@ const Register = ({navigation}) => {
         value={apellido}
         required
       />
-      <Button onPress={handleRegister} text="Registrarse"></Button>
+      <Button onPress={handleRegister} text="Registrarse" color="lightblue"></Button>
       <Button onPress={() => navigation.navigate('Login')} text="Ya tengo cuenta"></Button>
       <Text style={{color:'red'}}>{msj}</Text>
     </SafeAreaView>
