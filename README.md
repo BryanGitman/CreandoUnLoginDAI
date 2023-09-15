@@ -6,6 +6,7 @@
 # Usuario y permisos BD 
 Correr la siguiente query:
 
+```
 USE [master]
 GO
 CREATE LOGIN [Admin] WITH PASSWORD=N'Admin', DEFAULT_DATABASE=[LoginDAI], CHECK_EXPIRATION=OFF,
@@ -20,6 +21,7 @@ USE [LoginDAI]
 GO
 ALTER ROLE [db_owner] ADD MEMBER [Admin]
 GO
+```
 
 # Iniciar Proyecto API
 Abrir una nueva terminal:
