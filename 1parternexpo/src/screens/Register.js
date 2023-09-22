@@ -27,11 +27,11 @@ const Register = ({navigation}) => {
         Contraseña: contra,
         Nombre: nombre,
         Apellido: apellido
-      }).then(res => {
+      }).then(async res => {
           setMsj("");
           if(res.data.message == "Usuario creado")
           {
-            usuario.getUsuario(user);
+            await usuario.getUsuario(user);
             navigation.navigate('Home');
           }
           else

@@ -19,12 +19,12 @@ const Login = ({navigation}) => {
     axios.post('/login', {
       Usuario: user,
       Contraseña: contra
-    }).then(res => {
+    }).then(async res => {
         setMsj("");
         if(res.data.message == "Sesion iniciada correctamente")
         {
-          usuario.getUsuario(user);
-          navigation.navigate('Home', { nomUsuario: user });
+          await usuario.getUsuario(user);
+          navigation.navigate('Home');
         }
         else
         {

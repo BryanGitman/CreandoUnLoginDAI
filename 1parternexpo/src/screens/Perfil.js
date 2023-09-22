@@ -3,9 +3,12 @@ import { SafeAreaView, StyleSheet, TextInput, Text } from "react-native";
 import axios from "axios";
 import Button from "../components/Button";
 import UserContext from "../context/userContext";
+//import DateTimePicker from '@react-native-community/datetimepicker';
 
 const Perfil = ({ navigation }) => {
   const usuario = useContext(UserContext);
+
+  const [modo, setModo] = useState('edicion');
 
   const [user, setUser] = useState(usuario.usuario.NombreUsuario);
   const [contra, setContra] = useState(usuario.usuario.Contraseña);
@@ -13,7 +16,20 @@ const Perfil = ({ navigation }) => {
   const [apellido, setApellido] = useState(usuario.usuario.Apellido);
   const [mail, setMail] = useState(usuario.usuario.Mail);
   const [fechaNac, setFecha] = useState(usuario.usuario.FechaNacimiento);
+  //const [mode, setMode] = useState('date');
+  //const [show, setShow] = useState(false);
   const [msj, setMsj] = useState("");
+
+  const dejarDeEditar = () =>
+  {
+    setUser(usuario.usuario.NombreUsuario);
+    setContra(usuario.usuario.Contraseña);
+    setNombre(usuario.usuario.Nombre);
+    setApellido(usuario.usuario.Apellido);
+    setMail(usuario.usuario.Mail);
+    setFecha(usuario.usuario.FechaNacimiento.splice(0,10));
+    setModo('lectura');
+  }
 
   const handleChangeUsuario = (text) => setUser(text);
   const handleChangeContra = (text) => setContra(text);
@@ -21,12 +37,24 @@ const Perfil = ({ navigation }) => {
   const handleChangeApellido = (text) => setApellido(text);
   const handleChangeMail = (text) => setMail(text);
   const handleChangeFecha = (text) => setFecha(text);
+  /*const handleChangeFecha = (event, selectedDate) => 
+  {
+    const currentDate = selectedDate;
+    setShow(false);
+    setFecha(currentDate);
+  }
+
+  const showDatepicker = () => {
+    setShow(true);
+    setMode('date');
+  }*/
 
   const handleUpdate = () => {
     if (user && contra && nombre && apellido && mail) {
       axios
         .put("/perfil", {
           Id: usuario.usuario.Id,
+          UsuarioAnterior: usuario.usuario.NombreUsuario,
           Usuario: user,
           Contraseña: contra,
           Nombre: nombre,
@@ -34,10 +62,10 @@ const Perfil = ({ navigation }) => {
           Mail: mail,
           FechaNacimiento: fechaNac,
         })
-        .then((res) => {
+        .then(async res => {
           setMsj("");
           if (res.data.message == "Usuario editado") {
-            getUsuario(user);
+            await usuario.getUsuario(user);
             navigation.navigate("Home");
           } else {
             setMsj(res.data.message);
@@ -47,11 +75,7 @@ const Perfil = ({ navigation }) => {
     } else {
       setMsj("Completá todos los datos obligatorios");
     }
-  };
-
-  useEffect(() => {
-    getUsuario();
-  }, []);
+  }
 
   return (
     <SafeAreaView style={styles.container}>
@@ -60,6 +84,7 @@ const Perfil = ({ navigation }) => {
         style={styles.input}
         onChangeText={handleChangeUsuario}
         value={user}
+        editable={modo==="edicion" ? true : false}
         required
       />
       <Text>Contraseña:*</Text>
@@ -68,6 +93,7 @@ const Perfil = ({ navigation }) => {
         onChangeText={handleChangeContra}
         value={contra}
         secureTextEntry={true}
+        editable={modo==="lectura" ? false : true}
         required
       />
       <Text>Nombre:*</Text>
@@ -75,6 +101,7 @@ const Perfil = ({ navigation }) => {
         style={styles.input}
         onChangeText={handleChangeNombre}
         value={nombre}
+        editable={modo==="lectura" ? false : true}
         required
       />
       <Text>Apellido:*</Text>
@@ -82,6 +109,7 @@ const Perfil = ({ navigation }) => {
         style={styles.input}
         onChangeText={handleChangeApellido}
         value={apellido}
+        editable={modo==="lectura" ? false : true}
         required
       />
       <Text>Mail:*</Text>
@@ -89,6 +117,7 @@ const Perfil = ({ navigation }) => {
         style={styles.input}
         onChangeText={handleChangeMail}
         value={mail}
+        editable={modo==="lectura" ? false : true}
         required
       />
       <Text>Fecha de nacimiento:</Text>
@@ -96,8 +125,20 @@ const Perfil = ({ navigation }) => {
         style={styles.input}
         onChangeText={handleChangeFecha}
         value={fechaNac}
+        editable={modo==="lectura" ? false : true}
       />
-      <Button onPress={handleUpdate} text="Guardar" color="lightblue"></Button>
+      {/*<Text>Fecha de nacimiento: {fechaNac.toISOString().slice(0,10)}</Text>
+      {modo==="edicion" ? <Button onPress={showDatepicker} text="Seleccioná tu fecha de nacimiento" color="lightgrey" /> : ""}
+      {show?
+        <DateTimePicker
+          testID="dateTimePicker"
+          value={fechaNac}
+          mode={mode}
+          onChange={handleChangeFecha}
+        /> : ""
+      }*/}
+      {modo==="edicion" ? <Button onPress={handleUpdate} text="Guardar" color="lightblue"></Button> : ""}
+      <Button onPress={modo === 'lectura'? () => setModo('edicion') : () => dejarDeEditar()} text={modo === 'lectura'? "Editar" : "Dejar de editar"}></Button>
       <Text style={{ color: "red" }}>{msj}</Text>
     </SafeAreaView>
   );

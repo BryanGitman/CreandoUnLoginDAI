@@ -8,8 +8,8 @@ const Home = ({navigation}) => {
 
     return(
         <SafeAreaView style={styles.container}>
-            <Text style={styles.bienvenida}>Bienvenido, {usuario.Nombre + " " + usuario.Apellido}</Text>
-            <Button onPress={() => navigation.navigate("Perfil")} text={usuario.Mail === null? "Completá tu perfil": "Editá tu perfil"} color={usuario.Mail === null? "red": "lightblue"}></Button>
+            <Text style={styles.bienvenida}>Bienvenido, {usuario.usuario.Nombre + " " + usuario.usuario.Apellido}</Text>
+            <Button onPress={() => navigation.navigate("Perfil")} text={usuario.usuario.Mail === null? "Completá tu perfil": "Editá tu perfil"} color={usuario.usuario.Mail === null? "red": "lightblue"}></Button>
         </SafeAreaView>
     )
 }

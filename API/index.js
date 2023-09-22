@@ -53,6 +53,25 @@ app.post('/register', async (req, res) =>
     }
 });
 
+app.put('/perfil', async (req, res) =>
+{
+    const usuario = await UserService.getUser(req.body.Usuario);
+    if(!usuario || req.body.Usuario === req.body.UsuarioAnterior)
+    {
+        try {
+            await UserService.updateUser(req.body);
+            res.status(200).json({message: 'Usuario editado'});
+        } catch(error){
+            console.log(error);
+            res.status(500).json({error: 'Falló el update'});
+        }
+    }
+    else
+    {
+        res.status(200).json({message: 'El usuario ya existe'});
+    }
+});
+
 app.listen(port, () => {
     console.log(`Listening on port ${port}`);
 })
