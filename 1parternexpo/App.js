@@ -18,7 +18,6 @@ const App = () => {
 
   const getUsuario = nomUsuario =>
   {
-    console.log(nomUsuario);
     axios.post('/info', {
     Usuario: nomUsuario
     }).then(res => {

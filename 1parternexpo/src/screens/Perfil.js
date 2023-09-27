@@ -1,9 +1,9 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { SafeAreaView, StyleSheet, TextInput, Text } from "react-native";
 import axios from "axios";
 import Button from "../components/Button";
 import UserContext from "../context/userContext";
-//import DateTimePicker from '@react-native-community/datetimepicker';
+import DateTimePicker from '../components/DateTimePicker';
 
 const Perfil = ({ navigation }) => {
   const usuario = useContext(UserContext);
@@ -15,9 +15,8 @@ const Perfil = ({ navigation }) => {
   const [nombre, setNombre] = useState(usuario.usuario.Nombre);
   const [apellido, setApellido] = useState(usuario.usuario.Apellido);
   const [mail, setMail] = useState(usuario.usuario.Mail);
-  const [fechaNac, setFecha] = useState(usuario.usuario.FechaNacimiento);
-  //const [mode, setMode] = useState('date');
-  //const [show, setShow] = useState(false);
+  const [fechaNac, setFecha] = useState(usuario.usuario.FechaNacimiento?.toString().slice(0,10));
+  const [show, setShow] = useState(false);
   const [msj, setMsj] = useState("");
 
   const dejarDeEditar = () =>
@@ -27,7 +26,7 @@ const Perfil = ({ navigation }) => {
     setNombre(usuario.usuario.Nombre);
     setApellido(usuario.usuario.Apellido);
     setMail(usuario.usuario.Mail);
-    setFecha(usuario.usuario.FechaNacimiento.splice(0,10));
+    setFecha(usuario.usuario.FechaNacimiento?.toString().slice(0,10));
     setModo('lectura');
   }
 
@@ -36,18 +35,12 @@ const Perfil = ({ navigation }) => {
   const handleChangeNombre = (text) => setNombre(text);
   const handleChangeApellido = (text) => setApellido(text);
   const handleChangeMail = (text) => setMail(text);
-  const handleChangeFecha = (text) => setFecha(text);
-  /*const handleChangeFecha = (event, selectedDate) => 
+  const handleChangeFecha = async(e) => 
   {
-    const currentDate = selectedDate;
+    const currentDate = e.target.value;
     setShow(false);
-    setFecha(currentDate);
+    await setFecha(currentDate);
   }
-
-  const showDatepicker = () => {
-    setShow(true);
-    setMode('date');
-  }*/
 
   const handleUpdate = () => {
     if (user && contra && nombre && apellido && mail) {
@@ -60,7 +53,7 @@ const Perfil = ({ navigation }) => {
           Nombre: nombre,
           Apellido: apellido,
           Mail: mail,
-          FechaNacimiento: fechaNac,
+          FechaNacimiento: fechaNac?.toString().slice(0,10) != '1900-01-01'? fechaNac : null,
         })
         .then(async res => {
           setMsj("");
@@ -120,24 +113,15 @@ const Perfil = ({ navigation }) => {
         editable={modo==="lectura" ? false : true}
         required
       />
-      <Text>Fecha de nacimiento:</Text>
-      <TextInput
-        style={styles.input}
-        onChangeText={handleChangeFecha}
-        value={fechaNac}
-        editable={modo==="lectura" ? false : true}
-      />
-      {/*<Text>Fecha de nacimiento: {fechaNac.toISOString().slice(0,10)}</Text>
-      {modo==="edicion" ? <Button onPress={showDatepicker} text="Seleccioná tu fecha de nacimiento" color="lightgrey" /> : ""}
+      <Text>Fecha de nacimiento: {fechaNac?.toString().slice(0,10)}</Text>
+      {modo==="edicion" ? <Button onPress={() => setShow(true)} text="Seleccioná tu fecha de nacimiento" color="lightgrey" /> : <Text></Text>}
       {show?
         <DateTimePicker
-          testID="dateTimePicker"
           value={fechaNac}
-          mode={mode}
-          onChange={handleChangeFecha}
-        /> : ""
-      }*/}
-      {modo==="edicion" ? <Button onPress={handleUpdate} text="Guardar" color="lightblue"></Button> : ""}
+          onChange={(e) => handleChangeFecha(e)}
+        /> : <Text></Text>
+      }
+      {modo==="edicion" ? <Button onPress={handleUpdate} text="Guardar" color="lightblue"></Button> : <Text></Text>}
       <Button onPress={modo === 'lectura'? () => setModo('edicion') : () => dejarDeEditar()} text={modo === 'lectura'? "Editar" : "Dejar de editar"}></Button>
       <Text style={{ color: "red" }}>{msj}</Text>
     </SafeAreaView>
