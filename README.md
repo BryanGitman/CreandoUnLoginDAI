@@ -1,193 +1,222 @@
-<!-- Improved compatibility of back to top link: See: https://github.com/othneildrew/Best-README-Template/pull/73 -->
 <a name="readme-top"></a>
-<!--
-*** Thanks for checking out the Best-README-Template. If you have a suggestion
-*** that would make this better, please fork the repo and create a pull request
-*** or simply open an issue with the tag "enhancement".
-*** Don't forget to give the project a star!
-*** Thanks again! Now go create something AMAZING! :D
--->
 
-
-
-<!-- PROJECT SHIELDS -->
-<!--
-*** I'm using markdown "reference style" links for readability.
-*** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
-*** See the bottom of this document for the declaration of the reference variables
-*** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
-*** https://www.markdownguide.org/basic-syntax/#reference-style-links
--->
-
-<!-- PROJECT LOGO -->
-<br />
-<div align="center">
-  <a href="https://github.com/othneildrew/Best-README-Template">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
-  </a>
-
-  <h3 align="center">Best-README-Template</h3>
+  <h3 align="center">Creando un Login</h3>
 
   <p align="center">
-    An awesome README template to jumpstart your projects!
-    <br />
-    <a href="https://github.com/othneildrew/Best-README-Template"><strong>Explore the docs »</strong></a>
-    <br />
-    <br />
-    <a href="https://github.com/othneildrew/Best-README-Template">View Demo</a>
-    ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/othneildrew/Best-README-Template/issues">Request Feature</a>
+    Un proyecto de manejo de usuarios y su validación
   </p>
 </div>
 
-
-
 <!-- TABLE OF CONTENTS -->
 <details>
-  <summary>Table of Contents</summary>
+  <summary>Tabla de contenidos</summary>
   <ol>
     <li>
-      <a href="#about-the-project">About The Project</a>
+      <a href="#sobre-el-proyecto">Sobre el proyecto</a>
       <ul>
-        <li><a href="#built-with">Built With</a></li>
+        <li><a href="#hecho-con">Hecho con</a></li>
       </ul>
     </li>
     <li>
-      <a href="#getting-started">Getting Started</a>
+      <a href="#empezando">Empezando</a>
       <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
+        <li><a href="#prerequisitos">Prerequisitos</a></li>
+        <li><a href="#instalación">Instalación</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
+    <li><a href="#uso">Uso</a></li>
+    <li><a href="#mapa-vial">Mapa vial</a></li>
+    <li><a href="#agradecimientos">Agradecimientos</a></li>
   </ol>
 </details>
 
 
 
 <!-- ABOUT THE PROJECT -->
-## About The Project
+## Sobre el proyecto
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+La elaboración de este proyecto constó de muchas partes:
 
-There are many great README templates available on GitHub; however, I didn't find one that really suited my needs so I created this enhanced one. I want to create a README template so amazing that it'll be the last one you ever need -- I think this is it.
+#### Primera parte:
+Armar una API con Node, con la posibilidad de enviar via POST un usuario y contraseña, que esta API evalúe si estos datos son correctos o no.
+Armar una aplicación con RN + Expo que tenga una pantalla de Login con dos inputs uno para el usuario y otro para el password, y un botón que ejecute una función mediante el evento onPress.
 
-Here's why:
-* Your time should be focused on creating something amazing. A project that solves a problem and helps others
-* You shouldn't be doing the same tasks over and over like creating a README from scratch
-* You should implement DRY principles to the rest of your life :smile:
+#### Segunda Parte:
+Con AXIOS, conectar la aplicación de Node con la de RN. En RN, debo recibir y mostrar un mensaje de error, o éxito.
 
-Of course, no one template will serve all projects since your needs may be different. So I'll be adding more in the near future. You may also suggest changes by forking this repo and creating a pull request or opening an issue. Thanks to all the people have contributed to expanding this template!
+#### Tercera parte:
+Crear un nuevo botón con el texto "No tengo cuenta" que al ser presionado nos redireccione a otra pantalla mediante React Navigation
+ 
+#### Cuarta parte:
+Sumar una pantalla de registro funcional.
+Vincular en Node nuestro proyecto con nuestra base de datos.
+Hacer que los usuarios sean dinámicos (que la base de datos contenga usuarios)
 
-Use the `BLANK_README.md` to get started.
+#### Quinta parte:
+Manejar lo que ocurre en la aplicación una vez que estoy dentro de ella. 
+Al loguearme correctamente, ser redirigido a una pantalla "Home" que me de la bienvenida. 
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+##### Home:
+Si tengo un perfil con datos cargados, tener un texto que diga "Bienvenido %NOMBRE% %APELLIDO% y un botón que diga "Editar Perfil" 
+Si aún no completé mi perfil, el boton que diga "Completá tu perfil" 
+
+##### Perfil: 
+Hacer un formulario editable, con dos estados
+Si estoy visualizando tener los datos pre cargados, y un boton que me permita editar
+Si estoy editando, tener un formulario y poder completarlo.
+
+<p align="right">(<a href="#readme-top">arriba</a>)</p>
 
 
+### Hecho con
 
-### Built With
+* ![React Native](https://img.shields.io/badge/react_native-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+* ![Expo](https://img.shields.io/badge/expo-1C1E24?style=for-the-badge&logo=expo&logoColor=#D04A37)
+* ![Yarn](https://img.shields.io/badge/yarn-%232C8EBB.svg?style=for-the-badge&logo=yarn&logoColor=white)
+* ![NPM](https://img.shields.io/badge/NPM-%23CB3837.svg?style=for-the-badge&logo=npm&logoColor=white)
+* ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
+* ![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
+* ![MicrosoftSQLServer](https://img.shields.io/badge/Microsoft%20SQL%20Server-CC2927?style=for-the-badge&logo=microsoft%20sql%20server&logoColor=white)
 
-This section should list any major frameworks/libraries used to bootstrap your project. Leave any add-ons/plugins for the acknowledgements section. Here are a few examples.
-
-* [![Next][Next.js]][Next-url]
-* [![React][React.js]][React-url]
-* [![Vue][Vue.js]][Vue-url]
-* [![Angular][Angular.io]][Angular-url]
-* [![Svelte][Svelte.dev]][Svelte-url]
-* [![Laravel][Laravel.com]][Laravel-url]
-* [![Bootstrap][Bootstrap.com]][Bootstrap-url]
-* [![JQuery][JQuery.com]][JQuery-url]
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right">(<a href="#readme-top">arriba</a>)</p>
 
 
 
 <!-- GETTING STARTED -->
-## Getting Started
+## Empezando
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+Seguí los pasos para configurar el proyecto de forma local:
 
-### Prerequisites
+### Prerequisitos
 
-This is an example of how to list things you need to use the software and how to install them.
 * npm
   ```sh
   npm install npm@latest -g
   ```
 
-### Installation
 
-_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
+### Instalación
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
+#### Cloná el repositorio
    ```sh
-   git clone https://github.com/your_username_/Project-Name.git
-   ```
-3. Install NPM packages
-   ```sh
-   npm install
-   ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
+   git clone https://github.com/BryanGitman/CreandoUnLoginDAI.git
    ```
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+#### Iniciá la base de datos
+1. Abrir SQL server y escribir el nombre de la máquina en "server name" y escribirlo también en `/API/dbconfig.js`, en "server"
+2. Crear base de datos "LoginDAI"
+3. Abrir script en `/API/src/BD/` y ejecutar
+
+
+#### Creá el usuario en la base de datos para obtener los permisos
+Correr la siguiente query:
+```sql
+USE [master]
+GO
+CREATE LOGIN [Admin] WITH PASSWORD=N'Admin', DEFAULT_DATABASE=[LoginDAI], CHECK_EXPIRATION=OFF,
+CHECK_POLICY=OFF
+GO
+
+USE [LoginDAI]
+GO
+CREATE USER [Admin] FOR LOGIN [Admin]
+GO
+USE [LoginDAI]
+GO
+ALTER ROLE [db_owner] ADD MEMBER [Admin]
+GO
+```
+
+
+#### Iniciar Proyecto API
+Abrir una nueva terminal:
+1. Ubicarse en la API
+   ```sh
+   cd api
+   ```
+2. Instalar los paquetes
+   ```sh
+   npm i
+   ```
+3. Correr la API
+   ```sh
+   npm start
+   ```
+
+
+#### Iniciar Proyecto Expo
+Abrir otra nueva terminal:
+
+1. Ubicarse en el frontend
+   ```sh
+   cd 1parternexpo
+   ```
+2. Instalar los paquetes
+   ```sh
+   yarn
+   ```
+3. Correr el proyecto
+   ```sh
+   expo start --web
+   ```
+
+<p align="right">(<a href="#readme-top">arriba</a>)</p>
 
 
 
 <!-- USAGE EXAMPLES -->
-## Usage
+## Uso
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+En la parte de Login vas a tener la opcion iniciar sesion con usuario y contraseña. 
+![image](https://github.com/BryanGitman/CreandoUnLoginDAI/assets/111514117/ff896c9b-c4e4-47f0-8a89-767dbf3de61e)
 
-_For more examples, please refer to the [Documentation](https://example.com)_
+En el caso de que no tengas cuenta tenes la opcion de registrarte.
+![image](https://github.com/BryanGitman/CreandoUnLoginDAI/assets/111514117/fdcb2ce2-fb1a-4ff4-b42a-683ff43d18b5)
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+Una vez que ya esta logueado, en la home te aparece la opción de completar tu perfil o de editarlo todas las veces que quieras.
+![image](https://github.com/BryanGitman/CreandoUnLoginDAI/assets/111514117/d2f6afed-995e-422d-b23b-cdc24c19d858)
+
+![image](https://github.com/BryanGitman/CreandoUnLoginDAI/assets/111514117/7632a149-8e20-4a49-970a-e6f23c0bcdc7)
+
+![image](https://github.com/BryanGitman/CreandoUnLoginDAI/assets/111514117/c0fd637f-dc1e-4b8d-b119-2546eb9f135c)
+
+Ademas se puede cambiar al modo lectura para simplemente ver los datos del perfil.
+![image](https://github.com/BryanGitman/CreandoUnLoginDAI/assets/111514117/f5a0e6e9-b05a-42d3-9fef-a367cb59c07e)
+
 
 
 
 <!-- ROADMAP -->
-## Roadmap
+## Mapa vial
 
-- [x] Add Changelog
-- [x] Add back to top links
-- [ ] Add Additional Templates w/ Examples
-- [ ] Add "components" document to easily copy & paste sections of the readme
-- [ ] Multi-language Support
-    - [ ] Chinese
-    - [ ] Spanish
+- [x] Iniciar Sesión
+- [x] Registrarse
+- [x] Home
+- [x] Editar perfil
+- [x] Ver perfil
+- [ ] Diseñar home
+- [ ] Agregar imágenes
+ 
 
-See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a full list of proposed features (and known issues).
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right">(<a href="#readme-top">arriba</a>)</p>
 
 
 
 <!-- ACKNOWLEDGMENTS -->
-## Acknowledgments
+## Agradecimientos
 
-Use this space to list resources you find helpful and would like to give credit to. I've included a few of my favorites to kick things off!
+Les queremos agradecer a todos los recursos que nos sirvieron mucho para llevar a cabo este proyecto sin errores.
 
-* [Choose an Open Source License](https://choosealicense.com)
-* [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
-* [Malven's Flexbox Cheatsheet](https://flexbox.malven.co/)
-* [Malven's Grid Cheatsheet](https://grid.malven.co/)
-* [Img Shields](https://shields.io)
+* [Stack Overflow](https://es.stackoverflow.com/)
 * [GitHub Pages](https://pages.github.com)
-* [Font Awesome](https://fontawesome.com)
-* [React Icons](https://react-icons.github.io/react-icons/search)
+* [Expo Documentation](https://docs.expo.dev/)
+* [React Native Documentation](https://reactnative.dev/)
+* [Angie <3](https://github.com/sparksqueen)
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+  
+<p align="right">(<a href="#readme-top">arriba</a>)</p>
 
 
 
