@@ -1,44 +1,50 @@
-import { useState, useContext } from 'react';
+import { useState } from 'react';
 import {SafeAreaView, StyleSheet, TextInput, Text} from 'react-native';
-import axios from 'axios';
 import Button from '../components/Button';
-import UserContext from '../context/userContext';
+import { getFirestore, doc, setDoc } from 'firebase/firestore/lite';
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
 const Register = ({navigation}) => {
-  const usuario = useContext(UserContext);
-
-  const [user, setUser] = useState('');
-  const [contra, setContra] = useState('');
-  const [nombre, setNombre] = useState('');
-  const [apellido, setApellido] = useState('');
+  const [Mail, setMail] = useState('');
+  const [NombreUsuario, setUser] = useState('');
+  const [Contraseña, setContra] = useState('');
+  const [Nombre, setNombre] = useState('');
+  const [Apellido, setApellido] = useState('');
+  const [FechaNacimiento, setFecha] = useState('')
   const [msj, setMsj] = useState('');
 
+  const handleChangeMail = text => setMail(text);
   const handleChangeUsuario = text => setUser(text);
   const handleChangeContra = text => setContra(text);
   const handleChangeNombre = text => setNombre(text);
   const handleChangeApellido = text => setApellido(text);
 
-  const handleRegister = () =>
+  const handleRegister = async() =>
   {
-    if(user && contra && nombre && apellido)
+    if(Mail && NombreUsuario && Contraseña && Nombre && Apellido)
     {
-      axios.post('/register', {
-        Usuario: user,
-        Contraseña: contra,
-        Nombre: nombre,
-        Apellido: apellido
-      }).then(async res => {
-          setMsj("");
-          if(res.data.message == "Usuario creado")
-          {
-            await usuario.getUsuario(user);
-            navigation.navigate('Home');
-          }
-          else
-          {
-            setMsj(res.data.message);
-          }
-        }).catch(error => console.log(error));
+      try {
+        const auth = getAuth();
+        const { user } = await createUserWithEmailAndPassword(
+          auth,
+          Mail,
+          Contraseña
+        );
+        const { uid } = user;
+        const db = getFirestore();
+        await setDoc(doc(db, "Usuarios", uid), {
+          Apellido,
+          Contraseña,
+          FechaNacimiento,
+          Mail,
+          Nombre,
+          NombreUsuario
+        });
+        navigation.navigate('Home');
+      } catch (error) {
+        console.log(error);
+        setMsj(error.message);
+      }
     }
     else
     {
@@ -50,15 +56,23 @@ const Register = ({navigation}) => {
     <SafeAreaView style={styles.container}>
       <TextInput
         style={styles.input}
+        onChangeText={handleChangeMail}
+        placeholder="Mail"
+        value={Mail}
+        required
+      />
+
+      <TextInput
+        style={styles.input}
         onChangeText={handleChangeUsuario}
         placeholder="Usuario"
-        value={user}
+        value={NombreUsuario}
         required
       />
       <TextInput
         style={styles.input}
         onChangeText={handleChangeContra}
-        value={contra}
+        value={Contraseña}
         placeholder="Contraseña"
         secureTextEntry={true}
         required
@@ -67,14 +81,14 @@ const Register = ({navigation}) => {
         style={styles.input}
         onChangeText={handleChangeNombre}
         placeholder="Nombre"
-        value={nombre}
+        value={Nombre}
         required
       />
       <TextInput
         style={styles.input}
         onChangeText={handleChangeApellido}
         placeholder="Apellido"
-        value={apellido}
+        value={Apellido}
         required
       />
       <Button onPress={handleRegister} text="Registrarse" color="lightblue"></Button>

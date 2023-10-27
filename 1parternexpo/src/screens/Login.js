@@ -1,45 +1,39 @@
-import { useState, useContext } from 'react';
+import { useState } from 'react';
 import {SafeAreaView, StyleSheet, TextInput, Text} from 'react-native';
-import axios from 'axios';
 import Button from '../components/Button';
-import UserContext from '../context/userContext';
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
 const Login = ({navigation}) => {
-  const usuario = useContext(UserContext);
-
-  const [user, setUser] = useState('');
+  const [mail, setMail] = useState('');
   const [contra, setContra] = useState('');
   const [msj, setMsj] = useState('');
 
-  const handleChangeUsuario = text => setUser(text);
+  const handleChangeMail = text => setMail(text);
   const handleChangeContra = text => setContra(text);
 
   const handleLogin = () =>
   {
-    axios.post('/login', {
-      Usuario: user,
-      Contraseña: contra
-    }).then(async res => {
-        setMsj("");
-        if(res.data.message == "Sesion iniciada correctamente")
-        {
-          await usuario.getUsuario(user);
-          navigation.navigate('Home');
-        }
-        else
-        {
-          setMsj(res.data.message);
-        }
-      }).catch(error => console.log(error));
+    const auth = getAuth();
+    signInWithEmailAndPassword(auth, mail, contra)
+    .then((userCredential) => {
+      const user = userCredential.user;
+      navigation.navigate('Home');
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.log(errorCode);
+      setMsj(errorMessage);
+    });
   }
 
   return (
     <SafeAreaView style={styles.container}>
       <TextInput
         style={styles.input}
-        onChangeText={handleChangeUsuario}
-        placeholder="Usuario"
-        value={user}
+        onChangeText={handleChangeMail}
+        placeholder="Mail"
+        value={mail}
         required
       />
       <TextInput
