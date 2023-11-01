@@ -65,6 +65,8 @@ Hacer un formulario editable, con dos estados
 Si estoy visualizando tener los datos pre cargados, y un boton que me permita editar
 Si estoy editando, tener un formulario y poder completarlo.
 
+#### Sexta parte:
+Realizar el login con "Authentication" y los datos de registro y perfil deben almacenarse en "Firestore Database". Añadir un usuario, debe añadir un nuevo registro en el login, y un nuevo "documento" en la database. 
 <p align="right">(<a href="#readme-top">arriba</a>)</p>
 
 
@@ -77,6 +79,7 @@ Si estoy editando, tener un formulario y poder completarlo.
 * ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
 * ![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
 * ![MicrosoftSQLServer](https://img.shields.io/badge/Microsoft%20SQL%20Server-CC2927?style=for-the-badge&logo=microsoft%20sql%20server&logoColor=white)
+* ![Firebase](https://img.shields.io/badge/firebase-%23039BE5.svg?style=for-the-badge&logo=firebase)
 
 <p align="right">(<a href="#readme-top">arriba</a>)</p>
 
@@ -102,47 +105,6 @@ Seguí los pasos para configurar el proyecto de forma local:
    git clone https://github.com/BryanGitman/CreandoUnLoginDAI.git
    ```
 
-
-#### Iniciá la base de datos
-1. Abrir SQL server y escribir el nombre de la máquina en "server name" y escribirlo también en `/API/dbconfig.js`, en "server"
-2. Crear base de datos "LoginDAI"
-3. Abrir script en `/API/src/BD/` y ejecutar
-
-
-#### Creá el usuario en la base de datos para obtener los permisos
-Correr la siguiente query:
-```sql
-USE [master]
-GO
-CREATE LOGIN [Admin] WITH PASSWORD=N'Admin', DEFAULT_DATABASE=[LoginDAI], CHECK_EXPIRATION=OFF,
-CHECK_POLICY=OFF
-GO
-
-USE [LoginDAI]
-GO
-CREATE USER [Admin] FOR LOGIN [Admin]
-GO
-USE [LoginDAI]
-GO
-ALTER ROLE [db_owner] ADD MEMBER [Admin]
-GO
-```
-
-
-#### Iniciar Proyecto API
-Abrir una nueva terminal:
-1. Ubicarse en la API
-   ```sh
-   cd api
-   ```
-2. Instalar los paquetes
-   ```sh
-   npm i
-   ```
-3. Correr la API
-   ```sh
-   npm start
-   ```
 
 
 #### Iniciar Proyecto Expo
@@ -196,6 +158,7 @@ Ademas se puede cambiar al modo lectura para simplemente ver los datos del perfi
 - [x] Home
 - [x] Editar perfil
 - [x] Ver perfil
+- [x] Cambiar API por Firebase 
 - [ ] Diseñar home
 - [ ] Agregar imágenes
  
