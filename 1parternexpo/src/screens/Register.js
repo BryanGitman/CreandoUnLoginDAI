@@ -38,7 +38,8 @@ const Register = ({navigation}) => {
           FechaNacimiento,
           Mail,
           Nombre,
-          NombreUsuario
+          NombreUsuario,
+          uid
         });
         navigation.navigate('Home');
       } catch (error) {
