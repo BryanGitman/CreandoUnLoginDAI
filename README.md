@@ -131,15 +131,12 @@ Abrir otra nueva terminal:
 ## Uso
 
 En la parte de Login vas a tener la opcion iniciar sesion con usuario y contraseña. 
-![image](https://github.com/BryanGitman/CreandoUnLoginDAI/assets/111514117/ff896c9b-c4e4-47f0-8a89-767dbf3de61e)
+![image](https://github.com/BryanGitman/CreandoUnLoginDAI/assets/111514117/19a46f2f-548e-445b-9c8e-2254457f129b)
 
 En el caso de que no tengas cuenta tenes la opcion de registrarte.
-![image](https://github.com/BryanGitman/CreandoUnLoginDAI/assets/111514117/fdcb2ce2-fb1a-4ff4-b42a-683ff43d18b5)
+![image](https://github.com/BryanGitman/CreandoUnLoginDAI/assets/111514117/4b5235a1-16ed-4ba1-abfa-36eb61cc76e2)
 
-
-Una vez que ya esta logueado, en la home te aparece la opción de completar tu perfil o de editarlo todas las veces que quieras.
-![image](https://github.com/BryanGitman/CreandoUnLoginDAI/assets/111514117/d2f6afed-995e-422d-b23b-cdc24c19d858)
-
+Una vez que ya esta logueado, en la home te aparece la opción de editar tu perfil todas las veces que quieras.
 ![image](https://github.com/BryanGitman/CreandoUnLoginDAI/assets/111514117/7632a149-8e20-4a49-970a-e6f23c0bcdc7)
 
 ![image](https://github.com/BryanGitman/CreandoUnLoginDAI/assets/111514117/c0fd637f-dc1e-4b8d-b119-2546eb9f135c)
