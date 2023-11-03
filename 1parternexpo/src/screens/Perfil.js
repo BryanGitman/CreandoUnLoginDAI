@@ -1,30 +1,48 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { SafeAreaView, StyleSheet, TextInput, Text } from "react-native";
 import Button from "../components/Button";
 import { getAuth, updateProfile } from "firebase/auth";
+import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore/lite"; 
 
 const Perfil = ({ navigation }) => {
-  const auth = getAuth();
-  const usuario = auth.currentUser;
+  const [usuario, setUsuario] = useState({});
 
   const [modo, setModo] = useState('edicion');
 
-  const [user, setUser] = useState(usuario.NombreUsuario);
-  const [contra, setContra] = useState(usuario.Contraseña);
-  const [nombre, setNombre] = useState(usuario.Nombre);
-  const [apellido, setApellido] = useState(usuario.Apellido);
-  const [mail, setMail] = useState(usuario.Mail);
-  const [fechaNac, setFecha] = useState(usuario.FechaNacimiento);
+  const [user, setUser] = useState("");
+  const [contra, setContra] = useState("");
+  const [nombre, setNombre] = useState("");
+  const [apellido, setApellido] = useState("");
+  const [mail, setMail] = useState("");
+  const [fechaNac, setFecha] = useState("");
   const [msj, setMsj] = useState("");
+
+  const obtenerUsuario = async () => {
+      const auth = getAuth();
+      const db = getFirestore();
+      const docSnap = await getDoc(doc(db, "Usuarios", auth.currentUser.uid));
+      const user = docSnap.data();
+      setUsuario(user);
+      mostrarDatos(user);
+  }
+
+  useEffect(() => {
+      obtenerUsuario();
+  }, []);
+
+  const mostrarDatos = user =>
+  {
+    setUser(user.Usuario);
+    setContra(user.Contraseña);
+    setNombre(user.Nombre);
+    setApellido(user.Apellido);
+    setMail(user.Mail);
+    setFecha(user.FechaNacimiento);
+  }
 
   const dejarDeEditar = () =>
   {
-    setUser(usuario.NombreUsuario);
-    setContra(usuario.Contraseña);
-    setNombre(usuario.Nombre);
-    setApellido(usuario.Apellido);
-    setMail(usuario.Mail);
-    setFecha(usuario.FechaNacimiento);
+    mostrarDatos(usuario);
     setModo('lectura');
   }
 
@@ -35,9 +53,11 @@ const Perfil = ({ navigation }) => {
   const handleChangeMail = (text) => setMail(text);
   const handleChangeFecha = (text) => setFecha(text);
 
-  const handleUpdate = () => {
-    if (user && contra && nombre && apellido && mail) {
-      updateProfile(auth.currentUser, {
+  const handleUpdate = async() => {
+    if (user && contra && nombre && apellido && mail && fechaNac) {
+      const auth = getAuth();
+      const db = getFirestore();
+      const docSnap = await setDoc(doc(db, "Usuarios", auth.currentUser.uid), {
         Usuario: user,
         Contraseña: contra,
         Nombre: nombre,
@@ -51,13 +71,13 @@ const Perfil = ({ navigation }) => {
         setMsj(error.message);
       });
     } else {
-      setMsj("Completá todos los datos obligatorios");
+      setMsj("Todos los datos son obligatorios");
     }
   }
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text>Usuario:*</Text>
+      <Text>Usuario:</Text>
       <TextInput
         style={styles.input}
         onChangeText={handleChangeUsuario}
@@ -65,7 +85,7 @@ const Perfil = ({ navigation }) => {
         editable={modo==="edicion" ? true : false}
         required
       />
-      <Text>Contraseña:*</Text>
+      <Text>Contraseña:</Text>
       <TextInput
         style={styles.input}
         onChangeText={handleChangeContra}
@@ -74,7 +94,7 @@ const Perfil = ({ navigation }) => {
         editable={modo==="lectura" ? false : true}
         required
       />
-      <Text>Nombre:*</Text>
+      <Text>Nombre:</Text>
       <TextInput
         style={styles.input}
         onChangeText={handleChangeNombre}
@@ -82,7 +102,7 @@ const Perfil = ({ navigation }) => {
         editable={modo==="lectura" ? false : true}
         required
       />
-      <Text>Apellido:*</Text>
+      <Text>Apellido:</Text>
       <TextInput
         style={styles.input}
         onChangeText={handleChangeApellido}
@@ -90,7 +110,7 @@ const Perfil = ({ navigation }) => {
         editable={modo==="lectura" ? false : true}
         required
       />
-      <Text>Mail:*</Text>
+      <Text>Mail:</Text>
       <TextInput
         style={styles.input}
         onChangeText={handleChangeMail}
