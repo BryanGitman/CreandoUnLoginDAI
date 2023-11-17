@@ -3,6 +3,7 @@ import {SafeAreaView, StyleSheet, TextInput, Text} from 'react-native';
 import Button from '../components/Button';
 import { getFirestore, doc, setDoc } from 'firebase/firestore/lite';
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { appUser } from '../../FirebaseConfig.js';
 
 const Register = ({navigation}) => {
   const [Mail, setMail] = useState('');
@@ -10,7 +11,7 @@ const Register = ({navigation}) => {
   const [Contraseña, setContra] = useState('');
   const [Nombre, setNombre] = useState('');
   const [Apellido, setApellido] = useState('');
-  const [FechaNacimiento, setFecha] = useState('')
+  const [FechaNacimiento, setFecha] = useState('');
   const [msj, setMsj] = useState('');
 
   const handleChangeMail = text => setMail(text);
@@ -24,14 +25,14 @@ const Register = ({navigation}) => {
     if(Mail && NombreUsuario && Contraseña && Nombre && Apellido)
     {
       try {
-        const auth = getAuth();
+        const auth = getAuth(appUser);
         const { user } = await createUserWithEmailAndPassword(
           auth,
           Mail,
           Contraseña
         );
         const { uid } = user;
-        const db = getFirestore();
+        const db = getFirestore(appUser);
         await setDoc(doc(db, "Usuarios", uid), {
           Apellido,
           Contraseña,

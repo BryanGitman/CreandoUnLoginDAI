@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import { SafeAreaView, StyleSheet, TextInput, Text } from "react-native";
 import Button from "../components/Button";
-import { getAuth, updateProfile } from "firebase/auth";
+import { getAuth } from "firebase/auth";
 import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore/lite"; 
+import { appUser } from '../../FirebaseConfig.js';
 
 const Perfil = ({ navigation }) => {
   const [usuario, setUsuario] = useState({});
@@ -18,8 +19,8 @@ const Perfil = ({ navigation }) => {
   const [msj, setMsj] = useState("");
 
   const obtenerUsuario = async () => {
-      const auth = getAuth();
-      const db = getFirestore();
+      const auth = getAuth(appUser);
+      const db = getFirestore(appUser);
       const docSnap = await getDoc(doc(db, "Usuarios", auth.currentUser.uid));
       const user = docSnap.data();
       setUsuario(user);

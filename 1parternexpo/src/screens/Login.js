@@ -2,6 +2,7 @@ import { useState } from 'react';
 import {SafeAreaView, StyleSheet, TextInput, Text} from 'react-native';
 import Button from '../components/Button';
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { appUser } from '../../FirebaseConfig.js';
 
 const Login = ({navigation}) => {
   const [mail, setMail] = useState('');
@@ -13,7 +14,7 @@ const Login = ({navigation}) => {
 
   const handleLogin = () =>
   {
-    const auth = getAuth();
+    const auth = getAuth(appUser);
     signInWithEmailAndPassword(auth, mail, contra)
     .then((userCredential) => {
       const user = userCredential.user;
