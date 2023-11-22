@@ -1,9 +1,9 @@
 <a name="readme-top"></a>
 
-  <h3 align="center">Creando un Login</h3>
+  <h3 align="center">empneo</h3>
 
   <p align="center">
-    Un proyecto de manejo de usuarios y su validación
+    Una aplicación para inspirarte e inspirar a otros.
   </p>
 </div>
 
@@ -35,38 +35,9 @@
 <!-- ABOUT THE PROJECT -->
 ## Sobre el proyecto
 
-La elaboración de este proyecto constó de muchas partes:
+Con la aplicación podemos ingresar con un usuario o crear uno en el caso de que no lo tengamos y a su vez editarlo y verlo. Luego podemos visualizar disitintos articulos que se pueden leer. Estos son anónimos, por lo cual no sabemos quienes los escribieron. Asi como podemos leerlos, tenemos la opción de poder escribirlos y luego publicarlos. 
 
-#### Primera parte:
-Armar una API con Node, con la posibilidad de enviar via POST un usuario y contraseña, que esta API evalúe si estos datos son correctos o no.
-Armar una aplicación con RN + Expo que tenga una pantalla de Login con dos inputs uno para el usuario y otro para el password, y un botón que ejecute una función mediante el evento onPress.
 
-#### Segunda Parte:
-Con AXIOS, conectar la aplicación de Node con la de RN. En RN, debo recibir y mostrar un mensaje de error, o éxito.
-
-#### Tercera parte:
-Crear un nuevo botón con el texto "No tengo cuenta" que al ser presionado nos redireccione a otra pantalla mediante React Navigation
- 
-#### Cuarta parte:
-Sumar una pantalla de registro funcional.
-Vincular en Node nuestro proyecto con nuestra base de datos.
-Hacer que los usuarios sean dinámicos (que la base de datos contenga usuarios)
-
-#### Quinta parte:
-Manejar lo que ocurre en la aplicación una vez que estoy dentro de ella. 
-Al loguearme correctamente, ser redirigido a una pantalla "Home" que me de la bienvenida. 
-
-##### Home:
-Si tengo un perfil con datos cargados, tener un texto que diga "Bienvenido %NOMBRE% %APELLIDO% y un botón que diga "Editar Perfil" 
-Si aún no completé mi perfil, el boton que diga "Completá tu perfil" 
-
-##### Perfil: 
-Hacer un formulario editable, con dos estados
-Si estoy visualizando tener los datos pre cargados, y un boton que me permita editar
-Si estoy editando, tener un formulario y poder completarlo.
-
-#### Sexta parte:
-Realizar el login con "Authentication" y los datos de registro y perfil deben almacenarse en "Firestore Database". Añadir un usuario, debe añadir un nuevo registro en el login, y un nuevo "documento" en la database. 
 <p align="right">(<a href="#readme-top">arriba</a>)</p>
 
 
@@ -120,7 +91,7 @@ Abrir otra nueva terminal:
    ```
 3. Correr el proyecto
    ```sh
-   expo start --web
+   expo start --tunnel
    ```
 
 <p align="right">(<a href="#readme-top">arriba</a>)</p>
