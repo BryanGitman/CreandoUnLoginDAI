@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import {SafeAreaView, StyleSheet, TextInput, Text} from 'react-native';
+import {SafeAreaView, StyleSheet, TextInput, Text, Image} from 'react-native';
 import Button from '../components/Button';
 import { getFirestore, doc, setDoc } from 'firebase/firestore/lite';
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
@@ -56,6 +56,7 @@ const Register = ({navigation}) => {
 
   return (
     <SafeAreaView style={styles.container}>
+      <Image style={styles.logo} source={require('../../assets/logoNombre.png')}/>
       <TextInput
         style={styles.input}
         onChangeText={handleChangeMail}
@@ -113,6 +114,11 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     padding: 10,
     width: 200
+  },
+  logo: {
+    width: '80%',
+    resizeMode: 'contain',
+    marginVertical: '-20%'
   }
 });
 

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { TouchableOpacity, SafeAreaView, Image, StyleSheet } from 'react-native';
+import { TouchableOpacity, SafeAreaView, Image, StyleSheet, ScrollView } from 'react-native';
 import Card from '../components/Card';
 import { getFirestore, getDocs, collection } from "firebase/firestore/lite";
 import { appArt } from '../../FirebaseConfig.js';
@@ -24,8 +24,10 @@ const Articulos = ({navigation}) => {
 
     return (
         <SafeAreaView style={styles.container}>
-            <TouchableOpacity onPress={() => navigation.navigate("Home")}><Image style={styles.logo} source={require('../../assets/logoNombre.png')}></Image></TouchableOpacity>
-            {articulos.map(art => <Card key={art.uid} navigation={navigation} uid={art.uid} foto={art.Imagen} titulo={art.Titulo}></Card>)}
+            <TouchableOpacity onPress={() => navigation.navigate("Home")}><Image style={styles.logo} source={require('../../assets/logoNombre.png')}/></TouchableOpacity>
+            <ScrollView style={styles.articulos}>
+                {articulos.map(art => <Card key={art.uid} navigation={navigation} uid={art.uid} foto={art.Imagen} titulo={art.Titulo}></Card>)}
+            </ScrollView>
         </SafeAreaView>
     );
 }
@@ -37,9 +39,13 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         backgroundColor: '#FFF'
     },
-    logo:{
-        height: '5%',
+    logo: {
+        height: '50%',
         resizeMode: 'contain'
+    },
+    articulos: {
+        marginTop: '-40%',
+        width: '100%'
     }
 });
 
