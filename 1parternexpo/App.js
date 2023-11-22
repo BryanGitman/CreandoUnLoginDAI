@@ -7,6 +7,7 @@ import Home from "./src/screens/Home";
 import Perfil from "./src/screens/Perfil";
 import Articulos from "./src/screens/Articulos";
 import Articulo from "./src/screens/Articulo";
+import Escribir from "./src/screens/Escribir";
 
 const Stack = createNativeStackNavigator();
 
@@ -20,6 +21,7 @@ const App = () => {
         <Stack.Screen name="Perfil" component={Perfil} />
         <Stack.Screen name="Articulos" component={Articulos} />
         <Stack.Screen name="Articulo" component={Articulo} />
+        <Stack.Screen name="Escribir" component={Escribir} />
       </Stack.Navigator>
     </NavigationContainer>
   );
