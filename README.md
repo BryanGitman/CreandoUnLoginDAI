@@ -55,6 +55,12 @@ Con la aplicación podemos ingresar con un usuario o crear uno en el caso de que
   ![image](https://github.com/BryanGitman/empneo/assets/111514117/d9538afe-4c67-4be4-8d56-790ff0c7bac3)
     <p align="left"> Si en la pantalla principal, tocamos el boton de "Ver artículos" nos lleva a esta pantalla donde podemos visualizar los distintos artículos. Si queremos acceder a cada uno de ellos, basta con tocarlos para poder leerlos.</p>
 
+
+   ![image](https://github.com/BryanGitman/empneo/assets/111514117/3b76ce45-b194-40c3-bcc2-ca3319e42137)
+
+   <p align="left"> Si tocamos en el primer artículo podemos visualizarlo completo. De esta manera con cada uno.</p>
+
+
   ![image](https://github.com/BryanGitman/empneo/assets/111514117/9306e25a-fab3-4595-923b-6672b0099e6f)
   <p align="left"> En el caso que queramos escribir un artículo propio podemos tocar el boton de "Escribir" en la pantalla principal. Nos lleva a otra pantalla donde tenemos para poner el título del artículo, su respectiva imagen/portada, y su contenido.</p>
 
