@@ -37,36 +37,6 @@
 
 Con la aplicación podemos ingresar con un usuario o crear uno en el caso de que no lo tengamos y a su vez editarlo y verlo. Luego podemos visualizar disitintos articulos que se pueden leer. Estos son anónimos, por lo cual no sabemos quienes los escribieron. Asi como podemos leerlos, tenemos la opción de poder escribirlos y luego publicarlos. 
 
-  ![image](https://github.com/BryanGitman/empneo/assets/111514117/8d4493e7-b661-41c9-a2a9-c4a52425c655)
-  ![image](https://github.com/BryanGitman/empneo/assets/111514117/895efb08-0f3c-4309-bace-363778ec7678)
-
-  <p align="left">Tenemos la pantalla de login, en donde podemos o iniciar sesión con un usuario ya creado o registrarse con un usuario nuevo.</p>
-  
-  
-  ![image](https://github.com/BryanGitman/empneo/assets/111514117/b3c6c00b-e2b1-4191-94e2-a7f359e6d3a2)
-  <p align="left"> Una vez que iniciamos sesión nos lleva a la pantalla principal, donde tenemos distintas opciones. Podemos editar nuestro perfil, ver distintos articulos o escribir uno nuevo.</p>
-
-  ![image](https://github.com/BryanGitman/empneo/assets/111514117/44617cd0-ffd9-4946-bf1c-5eb290339e19)
-  ![image](https://github.com/BryanGitman/empneo/assets/111514117/59431d5e-c920-4f64-9c47-152274659232)
-
-  <p align="left"> Si queremos editar nuestro perfil, nos aparece esta pantalla donde podemos editar la información, con la opción de guardar o dejar de editar. Luego cuando terminamos podemos visualizar como quedo</p>
-
-
-  ![image](https://github.com/BryanGitman/empneo/assets/111514117/d9538afe-4c67-4be4-8d56-790ff0c7bac3)
-    <p align="left"> Si en la pantalla principal, tocamos el boton de "Ver artículos" nos lleva a esta pantalla donde podemos visualizar los distintos artículos. Si queremos acceder a cada uno de ellos, basta con tocarlos para poder leerlos.</p>
-
-
-   ![image](https://github.com/BryanGitman/empneo/assets/111514117/3b76ce45-b194-40c3-bcc2-ca3319e42137)
-
-   <p align="left"> Si tocamos en el primer artículo podemos visualizarlo completo. De esta manera con cada uno.</p>
-
-
-  ![image](https://github.com/BryanGitman/empneo/assets/111514117/9306e25a-fab3-4595-923b-6672b0099e6f)
-  <p align="left"> En el caso que queramos escribir un artículo propio podemos tocar el boton de "Escribir" en la pantalla principal. Nos lleva a otra pantalla donde tenemos para poner el título del artículo, su respectiva imagen/portada, y su contenido.</p>
-
-
-<p align="right">(<a href="#readme-top">arriba</a>)</p>
-
 
 ### Hecho con
 
@@ -126,6 +96,37 @@ Abrir otra nueva terminal:
 
 
 <!-- USAGE EXAMPLES -->
+## Uso
+  ![image](https://github.com/BryanGitman/empneo/assets/111514117/8d4493e7-b661-41c9-a2a9-c4a52425c655)
+  ![image](https://github.com/BryanGitman/empneo/assets/111514117/895efb08-0f3c-4309-bace-363778ec7678)
+
+  <p align="left">Tenemos la pantalla de login, en donde podemos o iniciar sesión con un usuario ya creado o registrarse con un usuario nuevo.</p>
+  
+  
+  ![image](https://github.com/BryanGitman/empneo/assets/111514117/b3c6c00b-e2b1-4191-94e2-a7f359e6d3a2)
+  <p align="left"> Una vez que iniciamos sesión nos lleva a la pantalla principal, donde tenemos distintas opciones. Podemos editar nuestro perfil, ver distintos articulos o escribir uno nuevo.</p>
+
+  ![image](https://github.com/BryanGitman/empneo/assets/111514117/44617cd0-ffd9-4946-bf1c-5eb290339e19)
+  ![image](https://github.com/BryanGitman/empneo/assets/111514117/59431d5e-c920-4f64-9c47-152274659232)
+
+  <p align="left"> Si queremos editar nuestro perfil, nos aparece esta pantalla donde podemos editar la información, con la opción de guardar o dejar de editar. Luego cuando terminamos podemos visualizar como quedo</p>
+
+
+  ![image](https://github.com/BryanGitman/empneo/assets/111514117/d9538afe-4c67-4be4-8d56-790ff0c7bac3)
+    <p align="left"> Si en la pantalla principal, tocamos el boton de "Ver artículos" nos lleva a esta pantalla donde podemos visualizar los distintos artículos. Si queremos acceder a cada uno de ellos, basta con tocarlos para poder leerlos.</p>
+
+
+   ![image](https://github.com/BryanGitman/empneo/assets/111514117/3b76ce45-b194-40c3-bcc2-ca3319e42137)
+
+   <p align="left"> Si tocamos en el primer artículo podemos visualizarlo completo. De esta manera con cada uno.</p>
+
+
+  ![image](https://github.com/BryanGitman/empneo/assets/111514117/9306e25a-fab3-4595-923b-6672b0099e6f)
+  <p align="left"> En el caso que queramos escribir un artículo propio podemos tocar el boton de "Escribir" en la pantalla principal. Nos lleva a otra pantalla donde tenemos para poner el título del artículo, su respectiva imagen/portada, y su contenido.</p>
+
+
+<p align="right">(<a href="#readme-top">arriba</a>)</p>
+
 
 
 <!-- ROADMAP -->
@@ -137,8 +138,10 @@ Abrir otra nueva terminal:
 - [x] Editar perfil
 - [x] Ver perfil
 - [x] Cambiar API por Firebase 
-- [ ] Diseñar home
-- [ ] Agregar imágenes
+- [x] Diseñar home
+- [x] Ver artículos
+- [x] Ver artículo completo
+- [x] Escribir
  
 
 <p align="right">(<a href="#readme-top">arriba</a>)</p>
